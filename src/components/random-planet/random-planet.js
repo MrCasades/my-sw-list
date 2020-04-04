@@ -18,9 +18,17 @@ export default class RandomPlanet extends Component {
             error: false
           }
 
-  constructor(){
-    super()
-    this.updatePlanet()
+  // constructor(){
+  //   super()
+  //   this.updatePlanet()
+  //   setInterval(this.updatePlanet, 1500)
+  // } Убираем всё из конструктора и переносим в componentDidMount -
+  // Это более правильно с точки зреня ООП и React, т.к. мы убираем 
+  // из него сетевой доступ и побочные эффекты
+
+  componentDidMount(){
+      this.updatePlanet()
+      setInterval(this.updatePlanet, 1500)
   }
 
     onPlanetLoaded = (planet) => {
@@ -28,7 +36,7 @@ export default class RandomPlanet extends Component {
                   loading: false})
   }//EventList
 
-  updatePlanet(){
+  updatePlanet = () => {
     const id = Math.floor(Math.random()*25 + 2)
     this.swapiService
       .getPlanet(id)
