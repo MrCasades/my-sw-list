@@ -1,7 +1,7 @@
 //Класс клиент приложения
 export default class SwService {
 
-    _apiBase = 'https://swapi.co/api'
+    _apiBase = 'https://swapi.dev/api'
 
     async getResourse(url) {
         const res = await fetch(`${this._apiBase}${url}`)
